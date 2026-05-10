@@ -181,23 +181,33 @@ function fetchBattery() {
 
 /* ══ 3. IP geolocation — two providers, race for fastest ══ */
 function fetchIPData() {
-  function fromIpApi(d) {
-    return { ip_address: d.ip || null, city: d.city || null, region: d.region || null, country: d.country_name || null, ip_lat: d.latitude || null, ip_lng: d.longitude || null };
-  }
   var empty = { ip_address: null, city: null, region: null, country: null, ip_lat: null, ip_lng: null };
 
-  var p1 = fetch("https://ipapi.co/json/").then(function(r){ return r.json(); }).then(fromIpApi).catch(function(){ return null; });
-  var p2 = fetch("https://ipwho.is/")
-    .then(function(r) { return r.json(); })
-    .then(function(d) {
-      console.log("[tracker] ipwho.is response:", d);
-      return { ip_address: d.ip || null, city: d.city || null, region: d.region || null, country: d.country || null, ip_lat: d.latitude || null, ip_lng: d.longitude || null };
+  /* ip-api.com — free, no key, works on mobile */
+  var p1 = fetch("https://ip-api.com/json/?fields=status,query,city,regionName,country,lat,lon")
+    .then(function(r){ return r.json(); })
+    .then(function(d){
+      if (d.status !== "success") return null;
+      return { ip_address: d.query || null, city: d.city || null, region: d.regionName || null, country: d.country || null, ip_lat: d.lat || null, ip_lng: d.lon || null };
     })
-    .catch(function(e) { console.warn("[tracker] ipwho.is failed:", e); return null; });
+    .catch(function(){ return null; });
 
-  /* Use first non-null result */
+  /* ipify + ipapi fallback */
+  var p2 = fetch("https://api.ipify.org?format=json")
+    .then(function(r){ return r.json(); })
+    .then(function(d){
+      return fetch("https://ipapi.co/" + d.ip + "/json/");
+    })
+    .then(function(r){ return r.json(); })
+    .then(function(d){
+      return { ip_address: d.ip || null, city: d.city || null, region: d.region || null, country: d.country_name || null, ip_lat: d.latitude || null, ip_lng: d.longitude || null };
+    })
+    .catch(function(){ return null; });
+
   return Promise.all([p1, p2]).then(function(results) {
-    return results[0] || results[1] || empty;
+    var result = results[0] || results[1] || empty;
+    console.log("[tracker] IP resolved:", result);
+    return result;
   });
 }
 
