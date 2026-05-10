@@ -184,13 +184,16 @@ function fetchIPData() {
   function fromIpApi(d) {
     return { ip_address: d.ip || null, city: d.city || null, region: d.region || null, country: d.country_name || null, ip_lat: d.latitude || null, ip_lng: d.longitude || null };
   }
-  function fromFreeIpApi(d) {
-    return { ip_address: d.ipAddress || null, city: d.cityName || null, region: d.regionName || null, country: d.countryName || null, ip_lat: d.latitude || null, ip_lng: d.longitude || null };
-  }
   var empty = { ip_address: null, city: null, region: null, country: null, ip_lat: null, ip_lng: null };
 
   var p1 = fetch("https://ipapi.co/json/").then(function(r){ return r.json(); }).then(fromIpApi).catch(function(){ return null; });
-  var p2 = fetch("https://freeipapi.com/api/json").then(function(r){ return r.json(); }).then(fromFreeIpApi).catch(function(){ return null; });
+  var p2 = fetch("https://ipwho.is/")
+    .then(function(r) { return r.json(); })
+    .then(function(d) {
+      console.log("[tracker] ipwho.is response:", d);
+      return { ip_address: d.ip || null, city: d.city || null, region: d.region || null, country: d.country || null, ip_lat: d.latitude || null, ip_lng: d.longitude || null };
+    })
+    .catch(function(e) { console.warn("[tracker] ipwho.is failed:", e); return null; });
 
   /* Use first non-null result */
   return Promise.all([p1, p2]).then(function(results) {
